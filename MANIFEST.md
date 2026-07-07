@@ -68,6 +68,8 @@ step left to the owner.
 | `tools/worktree-commit.sh` | Land a worktree to main; push made conditional on a remote existing. |
 | `tools/comms_post.py` | Post to the board. Author enum changed from a personal name to `human`; hardcoded git identity removed; push conditional on remote. |
 | `tools/comms_check.py` | Print recent board posts for SessionStart. Genericized. |
+| `tools/subconscious.py` | Optional associative-memory daemon (v2 add-on, 2026-07-07). Socket/PID/log paths hashed from repo root instead of a literal project name; sources are `diary/*.md` + `memory/*.md` + `now.md` + `who-we-are.md` (the private chat-corpus source was removed entirely); adds an `--index` command (adapted from `diary_search.py`'s `build_index()`) so the daemon loads a precomputed index instead of embedding on every start. |
+| `tools/subconscious_hook.py` | Its PreToolUse hook client. Same repo-hashed socket path; the private per-user surfacing log was dropped (it wrote to a hardcoded personal transcript path with no equivalent in this kit). |
 
 ### docs/
 | File | Why |
@@ -77,6 +79,7 @@ step left to the owner.
 | `docs/worktrees.md` | The multi-agent "fleet" workflow. |
 | `docs/comms-board.md` | The agent-to-agent board pattern. |
 | `docs/dew.md` | The morning brief: setup (ntfy + three runner options), voice customization, production design notes. No personal content; the private topic name is not reproduced. |
+| `docs/subconscious.md` | The optional daemon: what it is, install, `--index`/`--start`/`--reload` commands, the PreToolUse hook block, threshold-tuning guidance. |
 
 ### tend-reports/
 | File | Why |
@@ -110,8 +113,12 @@ hits** (see `leak-scan-report.md`):
 - [x] **Personal absolute paths** — no personal home-directory path or the private repo's
   directory name in any shipped file; paths are derived at runtime from the file's own
   location or `$CLAUDE_PROJECT_DIR`.
-- [x] **Subconscious daemon** — the private PreToolUse `subconscious` hook and its scripts were
-  deliberately left out (project-specific, out of scope).
+- [x] **Subconscious daemon** — ~~the private PreToolUse `subconscious` hook and its scripts
+  were deliberately left out (project-specific, out of scope)~~ — RESOLVED 2026-07-07
+  (owner's call): a **generalized v2** now ships (`tools/subconscious.py`,
+  `tools/subconscious_hook.py`, `docs/subconscious.md`) as an opt-in add-on. Scanned for
+  owner names, personal paths, chat-corpus references, and personal project names — none
+  found (see grep output in the port report).
 
 ## Judgment calls (flagged for the owner)
 
@@ -119,11 +126,17 @@ hits** (see `leak-scan-report.md`):
    (owner's call): the diary is essential to the memory system, so a `diary/` starter now
    ships — a conventions README plus one fictional example entry, matching the now.md
    worked example. No real diary content included.
-2. **Subconscious daemon excluded from v1, planned as a v2 optional add-on.** The
-   PreToolUse "subconscious" associative-memory hook was dropped, not genericized — it's
-   the most experimental subsystem and needs real generalization work (it embeds the
-   owner's memory files). Decision 2026-07-07: revisit as an optional add-on in a later
-   version; noted in the README's "Not in v1" section.
+2. **Subconscious daemon: excluded from v1, ~~planned as a v2 optional add-on~~ shipped as
+   v2 2026-07-07.** The PreToolUse "subconscious" associative-memory hook was originally
+   dropped rather than genericized because it's the most experimental subsystem and needed
+   real generalization work (it embedded the owner's memory files directly). Decision
+   2026-07-07 (owner's call): a generalized version now ships as an opt-in add-on —
+   embedding sources are `diary/*.md` + `memory/*.md` + `now.md` + `who-we-are.md` (the
+   private chat-corpus source was removed, not genericized), socket/PID/log paths are
+   hashed from the repo root instead of a literal name, and a new `--index` command
+   replaces the private version's per-startup re-embedding. See
+   [`docs/subconscious.md`](docs/subconscious.md); README's "The subconscious (optional
+   add-on)" section links it.
 3. **Comms board included.** It generalizes cleanly, so it's in, shipped empty. If you'd
    rather keep the first release focused purely on the memory tiers, it's safe to delete
    `comms/`, `docs/comms-board.md`, the two comms scripts, and the comms line in the

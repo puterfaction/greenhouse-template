@@ -96,12 +96,15 @@ tools/
   worktree-commit.sh          Land a worktree's work back to main
   comms_post.py               Post to the comms board
   comms_check.py              Print recent board posts (used by SessionStart)
+  subconscious.py             Optional: associative-memory daemon (docs/subconscious.md)
+  subconscious_hook.py        Optional: its PreToolUse hook client
 docs/
   architecture.md             Why the layers, in depth
   hooks.md                    What each hook does and how to adapt it
   worktrees.md                The multi-agent "fleet" workflow
   comms-board.md              The agent-to-agent board pattern
   dew.md                      The morning brief: setup, runners, design notes
+  subconscious.md             The optional associative-memory daemon: install, tuning, wiring
 ```
 
 ## The automation
@@ -159,13 +162,15 @@ off on days you never open a laptop. Setup and runner options in
 - **Let the tooling report but leave the judgment to people.** The health check flags; a
   human reflects and decides; an agent consolidates.
 
-## Not in v1
+## The subconscious (optional add-on)
 
-The private source also runs an experimental **"subconscious" daemon** — a PreToolUse
-hook that embeds the memory files and surfaces associatively related memories
-mid-session, unprompted. It's deliberately left out of this kit (it's the most
-experimental subsystem and needs real generalization work). Planned as an optional
-add-on in a later version.
+The source workspace also runs an experimental **"subconscious" daemon** — a PreToolUse
+hook that embeds `diary/`, `memory/`, `now.md`, and `who-we-are.md`, and surfaces
+associatively related memories mid-session, unprompted (the way something half-remembered
+nags at you without being asked for). It's included here as an **opt-in add-on**, not part
+of the core setup steps above — it's still the most experimental subsystem and the one
+most likely to need retuning per project. See [`docs/subconscious.md`](docs/subconscious.md)
+for install, wiring, and threshold-tuning guidance.
 
 ## License
 
