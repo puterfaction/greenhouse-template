@@ -62,3 +62,14 @@ New files (`dew/routine-prompt.md`, `dew/config.example.json`, `dew/2026-01-03-e
 owner names/handles (current and former), the private ntfy topic name, routine/trigger IDs,
 personal paths, project domains, relationship names, and email — **no hits**. The example
 brief is fictional (Pantry storyline); the config ships with an empty topic.
+
+## Addendum — subconscious addition (2026-07-07)
+
+New files (`tools/subconscious.py`, `tools/subconscious_hook.py`, `docs/subconscious.md`)
+plus README/MANIFEST/.gitignore updates scanned before push, independently by the
+reviewing session (not the porting agent): owner names/handles, personal paths, the
+private repo directory name, chat-corpus references, personal project names, topic
+names/IDs — **no hits**. Socket/PID/log paths are hashed from the repo root at runtime
+(no literal project name). Live-verified end-to-end against the kit's own fictional
+Pantry corpus before publishing: on-topic queries surface the fictional entries,
+off-topic queries surface nothing, and the runtime index artifact is gitignored.

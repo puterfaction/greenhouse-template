@@ -16,3 +16,6 @@ tend-reports/launchd.log
 
 # Handover files live outside the repo, but ignore if symlinked in
 handover.md
+
+# Subconscious runtime artifacts (rebuild with: python3 tools/subconscious.py --index)
+tools/subconscious_index.json
