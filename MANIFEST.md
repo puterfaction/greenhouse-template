@@ -42,6 +42,14 @@ step left to the owner.
 | --- | --- |
 | `comms/board.json` | **Empty** threaded board — one generic seed post, no real content. |
 
+### dew/
+| File | Why |
+| --- | --- |
+| `dew/routine-prompt.md` | The daily morning-brief instructions ("dew"), genericized from the private source: reads who-we-are.md for name/pronouns/voice, timezone and ntfy topic from config — no personal content. |
+| `dew/config.example.json` | Empty-topic config template; users copy to `dew/config.json`. |
+| `dew/2026-01-03-example.md` | *Fictional* example brief (continues the "Pantry" storyline). |
+| `dew/index.json` | Manifest seeded with the fictional example's entry only. |
+
 ### .claude/
 | File | Why |
 | --- | --- |
@@ -68,6 +76,7 @@ step left to the owner.
 | `docs/hooks.md` | What each hook does; how to adapt; scheduling the hygiene pass. |
 | `docs/worktrees.md` | The multi-agent "fleet" workflow. |
 | `docs/comms-board.md` | The agent-to-agent board pattern. |
+| `docs/dew.md` | The morning brief: setup (ntfy + three runner options), voice customization, production design notes. No personal content; the private topic name is not reproduced. |
 
 ### tend-reports/
 | File | Why |

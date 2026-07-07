@@ -54,3 +54,11 @@ of both documents on purpose, so the review paperwork is itself safe to publish.
   fictional examples.
 - Kept literal private identifiers out of `MANIFEST.md` and this report so the review
   artifacts are themselves safe to publish.
+
+## Addendum — dew addition (2026-07-07)
+
+New files (`dew/routine-prompt.md`, `dew/config.example.json`, `dew/2026-01-03-example.md`,
+`dew/index.json`, `docs/dew.md`) plus README/MANIFEST updates scanned before push:
+owner names/handles (current and former), the private ntfy topic name, routine/trigger IDs,
+personal paths, project domains, relationship names, and email — **no hits**. The example
+brief is fictional (Pantry storyline); the config ships with an empty topic.

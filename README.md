@@ -78,6 +78,11 @@ memory/
   example-project.md          Example per-topic project memory
   ship-threshold-example.md   Example "how to work with me" feedback memory
 comms/board.json              Empty threaded agent-to-agent message board
+dew/
+  routine-prompt.md           The daily morning-brief instructions (the "dew" layer)
+  config.example.json         ntfy topic + timezone for the phone push
+  2026-01-03-example.md       Fictional example brief (delete it, let yours land)
+  index.json                  Manifest of dew files (kept by the routine)
 .claude/
   settings.json               The three hooks, wired up
   skills/tend/SKILL.md         The /tend metabolism skill
@@ -96,6 +101,7 @@ docs/
   hooks.md                    What each hook does and how to adapt it
   worktrees.md                The multi-agent "fleet" workflow
   comms-board.md              The agent-to-agent board pattern
+  dew.md                      The morning brief: setup, runners, design notes
 ```
 
 ## The automation
@@ -132,6 +138,12 @@ so a fresh health report is always waiting.
 The multi-agent worktree workflow and the comms board are optional extras — adopt them
 only if you run several sessions at once or across several channels. See
 [`docs/worktrees.md`](docs/worktrees.md) and [`docs/comms-board.md`](docs/comms-board.md).
+
+**Dew** is the outbound extra: a scheduled agent reads `now.md` every morning and sends a
+short brief to your phone — what's alive, what's next, one small ask — committing each
+brief to `dew/` as its own proof-of-life. It's the layer that makes tending `now.md` pay
+off on days you never open a laptop. Setup and runner options in
+[`docs/dew.md`](docs/dew.md).
 
 ## Design principles, condensed
 
