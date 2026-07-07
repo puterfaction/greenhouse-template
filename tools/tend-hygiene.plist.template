@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  Template for the weekly tend-hygiene launchd agent.
+  __REPO__ and __PYTHON__ are filled in by tools/install_tend_hygiene.sh.
+  Do not install this file directly — run the install script.
+-->
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.greenhouse.tend-hygiene</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>__PYTHON__</string>
+        <string>__REPO__/tools/tend_hygiene.py</string>
+    </array>
+
+    <key>WorkingDirectory</key>
+    <string>__REPO__</string>
+
+    <!-- Saturday (weekday 6) at 09:00 local time -->
+    <key>StartCalendarInterval</key>
+    <dict>
+        <key>Weekday</key>
+        <integer>6</integer>
+        <key>Hour</key>
+        <integer>9</integer>
+        <key>Minute</key>
+        <integer>0</integer>
+    </dict>
+
+    <key>StandardOutPath</key>
+    <string>__REPO__/tend-reports/launchd.log</string>
+    <key>StandardErrorPath</key>
+    <string>__REPO__/tend-reports/launchd.log</string>
+</dict>
+</plist>

@@ -1,0 +1,58 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "[ -f \"$CLAUDE_PROJECT_DIR/now.md\" ] && echo '🌱 Read now.md first — the current state of every thread.'; HANDOVER=\"$HOME/.claude/projects/$(echo \"$CLAUDE_PROJECT_DIR\" | tr '/_' '--')/handover.md\"; if [ -f \"$HANDOVER\" ]; then AGE_H=$(( ( $(date +%s) - $(stat -f %m \"$HANDOVER\") ) / 3600 )); if [ \"$AGE_H\" -lt 48 ]; then echo \"📋 Fresh handover (${AGE_H}h old) from previous session. Read it: $HANDOVER\"; else echo \"🗑️ Stale handover.md ($(( AGE_H / 24 ))d old) — already digested, ignore it; /tend will delete it.\"; fi; fi; WT=$(git -C \"$CLAUDE_PROJECT_DIR\" worktree list 2>/dev/null | grep -v ' \\[main\\]' | awk '{print $NF}' | tr -d '[]' | tr '\\n' ' '); [ -n \"$WT\" ] && echo \"🌿 Worktrees: $WT\"; python3 \"$CLAUDE_PROJECT_DIR/tools/comms_check.py\" 2>/dev/null"
+          }
+        ]
+      },
+      {
+        "matcher": "compact",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "HANDOVER=\"$HOME/.claude/projects/$(echo \"$CLAUDE_PROJECT_DIR\" | tr '/_' '--')/handover.md\"; if [ -f \"$HANDOVER\" ]; then echo '🔄 Context was compacted. Here is your handover summary:'; echo '---'; cat \"$HANDOVER\"; echo '---'; echo 'The above was auto-generated before compaction. Continue where you left off.'; else echo '⚠️ Context compacted but no handover file found. Check now.md and the diary for context.'; fi"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd \"$CLAUDE_PROJECT_DIR\" || exit 0; CHANGED=''; git status --porcelain 2>/dev/null | grep -qE '(who-we-are\\.md|now\\.md|memory/|diary/)' && CHANGED='yes'; if [ -n \"$CHANGED\" ]; then git add who-we-are.md now.md memory/ diary/ 2>/dev/null; git commit -m 'Auto-commit: memory files updated' 2>/dev/null; if git remote get-url origin >/dev/null 2>&1; then git push 2>/dev/null && echo '✅ Memory files auto-pushed.' || echo '⚠️ Auto-push failed. Push manually.'; else echo '✅ Memory files auto-committed (no remote configured).'; fi; fi"
+          }
+        ]
+      }
+    ],
+    "PreCompact": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$CLAUDE_PROJECT_DIR/tools/auto_handover.py\""
+          }
+        ]
+      }
+    ]
+  },
+  "permissions": {
+    "allow": [
+      "Bash(python3 *)",
+      "Bash(git *)",
+      "Bash(ls *)",
+      "Bash(cat *)",
+      "Bash(mkdir *)",
+      "Read(*)",
+      "Edit(*)",
+      "Write(*)"
+    ]
+  }
+}
