@@ -7,8 +7,8 @@ identity, relationships, or data.
 
 Built in a fresh git repository with **no shared history** with the source (a `git init`
 from scratch — the source's history contains all the private content, so it was never
-touched). **No remote is configured and nothing has been pushed.** Publishing is a manual
-step left to the owner.
+touched). Published 2026-07-07; updated 2026-10-30 with changes ported from the live workspace (see the
+git log). Every update is re-scanned before it ships (`leak-scan-report.md`).
 
 ## Files included
 

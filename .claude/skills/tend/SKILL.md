@@ -21,6 +21,7 @@ A mid-week hygiene-only pass can just read the latest `tend-reports/` file (or r
 
 4. **Read state.** now.md, the diary entries + git log since the last "Last tended" date.
 5. **Find the takeaways and the blindspots.** What did the week actually produce? What is being avoided or quietly drifting? Ask any standing question the durable file names (e.g. "am I shipping outward or only building inward?"). Name anything sitting built-but-unshipped.
+5b. **Contrarian pass.** A memory system is an attractor: claims that get inherited without being re-tested calcify into destiny, and the system starts measuring itself instead of the person. Each tend, do two things. (a) Pick at least one recorded pattern-claim about the human (who-we-are.md, MEMORY.md) and actively try to refute it against the week's evidence. If it no longer holds, retire it in step 9; if it survives, it earned another week. (b) Ask: **what did the agent avoid saying this week because memory framed a topic as sensitive?** Name any candidates in the reflection. Withheld criticism justified by a sensitivity note is the known failure mode, not tact.
 
 ## 3. Decision — pick the next moves
 

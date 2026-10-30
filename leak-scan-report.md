@@ -73,3 +73,15 @@ names/IDs — **no hits**. Socket/PID/log paths are hashed from the repo root at
 (no literal project name). Live-verified end-to-end against the kit's own fictional
 Pantry corpus before publishing: on-topic queries surface the fictional entries,
 off-topic queries surface nothing, and the runtime index artifact is gitignored.
+
+## Addendum — October update (2026-10-30)
+
+Changes: README (new "memory is history, not fate" principle, updated provenance line),
+`/tend` skill (contrarian pass, step 5b, rewritten generically), `tools/tend_check.py`
+(remote-sync check, branch-agnostic, skipped when no remote), MANIFEST status line. Whole
+tree re-scanned case-insensitively for owner names and former names, close-relationship
+names, family names, handles, employer and past-employer names, personal project names,
+location names, identity and medical terms, email addresses and absolute home paths —
+**no hits** beyond the deliberate author attribution already noted above. The contrarian
+pass was rewritten from the source workspace's version with all person-specific context
+removed.

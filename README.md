@@ -12,7 +12,8 @@ stateless agent can show up and *know* the project: what's live right now, what 
 before, what's durably true, and how you like to work.
 
 It's the sanitized, reusable design extracted from a personal workspace called "the
-Greenhouse," where it's been in daily use across hundreds of sessions.
+Greenhouse," in daily use since January 2026: over a thousand commits, several agents
+running in parallel, and a daily morning brief to a phone.
 
 ## The core idea: metabolize, don't accrete
 
@@ -161,6 +162,13 @@ off on days you never open a laptop. Setup and runner options in
   Deletion and promotion are the point of `/tend`.
 - **Let the tooling report but leave the judgment to people.** The health check flags; a
   human reflects and decides; an agent consolidates.
+- **Memory is history, not fate.** Whatever gets recorded about a person becomes the
+  default the agent reads them through, and defaults reinforce themselves: evidence that
+  agrees gets kept, evidence that doesn't gets softened or cut. Left alone, the system ends
+  up measuring its own notes instead of the person. So `/tend` runs a contrarian pass: each
+  week it picks a recorded claim and tries to refute it against recent evidence. People
+  change; the file should be able to notice. (A sensitivity note is a handling instruction,
+  never a reason to stop telling the person the truth.)
 
 ## The subconscious (optional add-on)
 

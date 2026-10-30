@@ -61,6 +61,28 @@ def main():
     os.chdir(ROOT)
     print("Memory health check — " + date.today().isoformat())
 
+    # -- remote sync (a stale local checkout poisons every other check) ------
+    # Scheduled cloud agents (the dew brief, web sessions) may push to origin
+    # while no local session pulls; every check below would then report on old
+    # data and call a healthy system dead. Skipped when there is no remote.
+    branch = git("rev-parse", "--abbrev-ref", "HEAD")
+    if git("remote") and branch and branch != "HEAD":
+        fetched = True
+        try:
+            subprocess.run(["git", "fetch", "--quiet", "origin", branch],
+                           cwd=ROOT, capture_output=True, timeout=45)
+        except Exception:
+            fetched = False
+        counts = git("rev-list", "--left-right", "--count", f"{branch}...origin/{branch}")
+        if counts and len(counts.split()) == 2:
+            ahead, behind = (int(x) for x in counts.split())
+            note = "" if fetched else " (fetch FAILED, counts vs last-known origin)"
+            say(behind == 0,
+                f"local {branch}: {behind} behind / {ahead} ahead of origin{note}" +
+                ("" if behind == 0 else " — pull before trusting the checks below"))
+        else:
+            say(False, f"could not compare local {branch} to origin/{branch}")
+
     # -- now.md ------------------------------------------------------------
     now_path = os.path.join(ROOT, "now.md")
     if not os.path.exists(now_path):
