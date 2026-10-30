@@ -165,8 +165,9 @@ off on days you never open a laptop. Setup and runner options in
 - **Memory is history, not fate.** Whatever gets recorded about a person becomes the
   default the agent reads them through, and defaults reinforce themselves: evidence that
   agrees gets kept, evidence that doesn't gets softened or cut. Left alone, the system ends
-  up measuring its own notes instead of the person. So `/tend` runs a contrarian pass: each
-  week it picks a recorded claim and tries to refute it against recent evidence. People
+  up measuring its own notes instead of the person. So `/tend` runs a contrarian pass: it
+  tries to refute every recorded claim the recent evidence touches, plus the claims that
+  have gone longest without a test, tracked in a ledger. People
   change; the file should be able to notice. (A sensitivity note is a handling instruction,
   never a reason to stop telling the person the truth.)
 
